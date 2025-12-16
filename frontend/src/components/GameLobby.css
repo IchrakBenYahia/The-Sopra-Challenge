@@ -1,0 +1,163 @@
+/* src/components/GameLobby.css */
+
+.lobby-container {
+  /* Assure que le fond prend TOUT l'écran */
+  background: var(--bg-gradient);
+  width: 100vw;  /* 100% de la largeur de la vue */
+  height: 100vh; /* 100% de la hauteur de la vue */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centre verticalement */
+  overflow: hidden; /* Évite les barres de défilement */
+}
+
+.lobby-header h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000;
+  z-index: 10;
+  margin-top: 0;
+}
+
+/* Modification majeure ici : On élargit la carte */
+.lobby-card {
+  background: rgba(255, 255, 255, 0.1); /* Transparence légère */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  
+  /* C'est ici que ça change pour prendre tout l'écran */
+  width: 90%;           /* Prend 90% de la largeur de l'écran */
+  max-width: 1600px;    /* Augmenté de 900px à 1600px pour les grands écrans */
+  
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.room-title {
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 0 #000;
+  font-weight: 900;
+}
+
+.lobby-grid {
+  display: flex;
+  justify-content: space-around; /* Écarte les éléments (Code à gauche, Joueurs à droite) */
+  align-items: flex-start;
+  width: 100%; /* Important : force la grille à utiliser toute la largeur de la carte */
+  gap: 50px;
+}
+
+/* --- COLONNE GAUCHE (QR + CODE) --- */
+.info-column {
+  display: flex;
+  flex-direction: row; /* Met le Code et le QR côte à côte comme sur la maquette */
+  gap: 40px;
+  align-items: center;
+  background: rgba(0,0,0,0.2); /* Fond sombre derrière le bloc code/qr */
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-label {
+  font-weight: 900;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 0 #000;
+  text-transform: uppercase;
+}
+
+.code-box {
+  background: white;
+  color: black;
+  font-size: 3.5rem; /* Plus gros */
+  font-weight: 900;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 8px 8px 0px #000;
+  letter-spacing: 2px;
+}
+
+.qr-wrapper {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 8px 8px 0px #000;
+  display: flex;
+}
+
+/* --- COLONNE DROITE (JOUEURS) --- */
+.players-column {
+  flex: 1; /* Prend l'espace restant */
+  max-width: 500px; /* Limite la largeur de la liste des joueurs */
+}
+
+.players-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid rgba(255,255,255,0.3);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.counter {
+  font-size: 2rem;
+  color: var(--sopra-orange); /* Utilise la variable définie dans App.css */
+  text-shadow: 2px 2px 0 #000;
+}
+
+.player-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(255,255,255,0.1);
+  margin-bottom: 15px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+.player-name {
+  color: var(--sopra-orange);
+  font-weight: 900;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+.player-row.empty {
+  background: transparent;
+  border: 3px dashed rgba(255,255,255,0.2);
+}
+
+/* --- RESPONSIVE (Si l'écran est petit) --- */
+@media (max-width: 1000px) {
+  .lobby-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info-column {
+    flex-direction: column;
+  }
+}
