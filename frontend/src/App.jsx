@@ -6,27 +6,23 @@ import './App.css';
 // Import des composants
 import CreateGame from './components/CreateGame';
 import GameLobby from './components/GameLobby';
-
-// Placeholder temporaire pour la vue mobile (sera développée plus tard)
-const MobileJoin = () => (
-  <div style={{ padding: 20, textAlign: 'center' }}>Interface Mobile: Rejoindre une partie</div>
-);
+import MobileJoin from './components/MobileJoin'; 
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          {/* Page d'accueil : Création de la partie (Figure 27) */}
+          {/* Écran Hôte : Création de la partie */}
           <Route path="/" element={<CreateGame />} />
           
-          {/* Page Salle d'attente : QR Code (Figure 28) */}
+          {/* Écran Hôte : Salle d'attente (Lobby) */}
           <Route path="/lobby" element={<GameLobby />} />
           
-          {/* Page Joueur Mobile */}
+          {/* Écran Joueur : Connexion Mobile & Choix du pion */}
           <Route path="/join" element={<MobileJoin />} />
 
-          {/* Redirection par défaut */}
+          {/* Redirection par défaut vers l'accueil */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
