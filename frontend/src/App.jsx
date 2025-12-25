@@ -7,6 +7,7 @@ import './App.css';
 import CreateGame from './components/Lobby/CreateGame';
 import GameLobby from './components/Lobby/GameLobby';
 import Plateau from './components/Board/Plateau';
+import GameFlow from "./components/Question/GameFlow";
 
 // Placeholder temporaire pour la vue mobile (sera développée plus tard)
 const MobileJoin = () => (
@@ -31,6 +32,8 @@ function App() {
 
           {/* Page Plateau de jeu */}
           <Route path="/plateau" element={<Plateau />} />
+
+          <Route path="/question" element={<GameFlow />} />
 
           {/* Redirection par défaut */}
           <Route path="*" element={<Navigate to="/" replace />} />
