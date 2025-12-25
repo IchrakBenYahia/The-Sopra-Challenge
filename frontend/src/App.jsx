@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './App.css';
 
 // Import des composants
-import CreateGame from './components/CreateGame';
-import GameLobby from './components/GameLobby';
+import CreateGame from './components/Lobby/CreateGame';
+import GameLobby from './components/Lobby/GameLobby';
 import Plateau from './components/Board/Plateau';
 
 // Placeholder temporaire pour la vue mobile (sera développée plus tard)
