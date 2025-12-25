@@ -21,13 +21,13 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          {/* Page d'accueil : Création de la partie (Figure 27) */}
+          {/* Écran Hôte : Création de la partie */}
           <Route path="/" element={<CreateGame />} />
           
-          {/* Page Salle d'attente : QR Code (Figure 28) */}
+          {/* Écran Hôte : Salle d'attente (Lobby) */}
           <Route path="/lobby" element={<GameLobby />} />
           
-          {/* Page Joueur Mobile */}
+          {/* Écran Joueur : Connexion Mobile & Choix du pion */}
           <Route path="/join" element={<MobileJoin />} />
 
           {/* Page Plateau de jeu */}

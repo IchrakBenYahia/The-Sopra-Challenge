@@ -1,0 +1,254 @@
+/* src/components/MobileJoin.css */
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap'); 
+/* Ou une police similaire épaisse comme "Titan One" ou "Fredoka One" pour le titre */
+
+.mobile-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Dégradé exact de l'image : Violet foncé en haut gauche -> Orange en bas droite */
+  background: linear-gradient(135deg, #2c0b56 0%, #8b1d82 40%, #ef7d00 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centre verticalement comme sur l'image */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+/* --- DÉCORATIONS D'ARRIÈRE-PLAN --- */
+.decor {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.triangle-top-left {
+  top: -50px;
+  left: -50px;
+  width: 150px;
+  height: 150px;
+  background: #1a1a1a;
+  transform: rotate(45deg);
+  border-bottom: 5px solid #4D1D82;
+}
+
+.sunburst-top-right {
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 20%),
+              radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 20%);
+  background-size: 30px 30px;
+  opacity: 0.5;
+  border-radius: 50%;
+  /* Ceci est une simulation simplifiée du motif soleil */
+}
+
+.spikes-bottom-left {
+  bottom: -30px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.center-triangle {
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(180deg);
+  width: 0; 
+  height: 0; 
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 100px solid rgba(255, 100, 150, 0.2); /* Triangle rose transparent */
+  z-index: 0;
+}
+
+/* --- HEADER & TITRE --- */
+.mobile-header {
+  margin-bottom: 40px;
+  z-index: 10;
+  text-align: center;
+}
+
+.mobile-header h1 {
+  /* Police style cartoon */
+  font-family: 'Titan One', 'Montserrat', sans-serif; 
+  font-size: 2.2rem;
+  margin: 0;
+  text-transform: uppercase;
+  color: white;
+  /* Contour noir épais (Hard Stroke) */
+  text-shadow: 
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     4px 4px 0 rgba(0,0,0,0.5);
+  line-height: 1.1;
+}
+
+.mobile-content {
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- FORMULAIRES ET INPUTS (Style Figure 28) --- */
+
+.input-label {
+  font-family: 'Titan One', 'Montserrat', sans-serif; /* Même police que le titre si possible */
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 rgba(0,0,0,1); /* Ombre dure sur le texte */
+}
+
+.game-input.pill-shape {
+  width: 100%;
+  height: 60px; /* Input assez haut */
+  padding: 0 20px;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  
+  /* Forme Pilule */
+  border-radius: 50px; 
+  border: none;
+  
+  /* Ombre portée noire dure vers le bas */
+  box-shadow: 0 10px 0 #000; 
+  
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  color: black;
+  outline: none;
+}
+
+.game-input:focus {
+  transform: translateY(2px);
+  box-shadow: 0 8px 0 #000;
+}
+
+.action-btn {
+  /* Bouton OK discret ou intégré visuellement */
+  background-color: var(--sopra-violet-dark);
+  color: white;
+  padding: 10px 30px;
+  font-weight: 900;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 5px 0 #000;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.divider-text {
+  margin: 20px 0;
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 0 #000;
+  position: relative;
+  display: inline-block;
+}
+
+.divider-text::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: white;
+  margin-top: 2px;
+  box-shadow: 0 2px 0 #000;
+}
+
+/* --- LIEN SCANNER (Style Texte Souligné) --- */
+.scan-link {
+  font-family: 'Titan One', 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  
+  /* Soulignement épais blanc */
+  border-bottom: 4px solid white;
+  padding-bottom: 2px;
+  
+  text-shadow: 
+    -1.5px -1.5px 0 #000,  
+     1.5px -1.5px 0 #000,
+    -1.5px  1.5px 0 #000,
+     1.5px  1.5px 0 #000; /* Contour noir sur le texte */
+  box-shadow: 0 4px 0 #000; /* Ombre sous la ligne blanche */
+  margin-top: 10px;
+}
+
+.scan-link:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #000;
+}
+
+/* --- Styles Etape 2 (Avatar) --- */
+.room-info {
+  background: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 900;
+  box-shadow: 0 5px 0 #000;
+  margin-bottom: 20px;
+}
+
+.avatar-grid {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.avatar-choice {
+  background: rgba(255,255,255,0.2);
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.avatar-choice.selected {
+  background: white;
+  box-shadow: 0 0 15px white;
+}
+
+.pawn-shape {
+  width: 40px;
+  height: 60px;
+  border-radius: 50% 50% 5px 5px;
+}
+
+.join-btn {
+  background: #2ecc71;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 15px;
+  border-radius: 50px;
+  box-shadow: 0 8px 0 #000;
+}

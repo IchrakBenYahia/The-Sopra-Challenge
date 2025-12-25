@@ -1,0 +1,126 @@
+/* src/components/PawnSelection.css */
+
+.pawn-selection-container {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* --- TITRE --- */
+.selection-title {
+  font-family: 'Montserrat', sans-serif; /* Ou Titan One si vous l'avez importée */
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: black;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  z-index: 10;
+  text-align: center;
+  text-shadow: 2px 2px 0 #000; /* Ombre dure style cartoon */
+}
+
+/* --- DÉCORATIONS D'ANGLES --- */
+.corner-stripe {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-color: #1a1a1a;
+  z-index: 1;
+}
+
+/* Les rayures blanches sur les triangles */
+.corner-stripe::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.2) 10px,
+    rgba(255, 255, 255, 0.2) 12px
+  );
+}
+
+.top-left {
+  top: -60px;
+  left: -40px;
+  transform: rotate(15deg);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.bottom-right {
+  bottom: -60px;
+  right: -40px;
+  transform: rotate(15deg);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* --- GRILLE DES PIONS --- */
+.pawns-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 10;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.pawn-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 5px;
+}
+
+/* Effet au clic */
+.pawn-card:active {
+  transform: scale(0.9);
+}
+
+/* --- IMAGES DES PIONS --- */
+.pawn-image-wrapper {
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.pawn-image {
+  width: 60px;  /* Ajustez selon la taille de vos images */
+  height: auto; 
+  display: block;
+  /* Optionnel : ajoute une ombre portée légère à l'image */
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+}
+
+/* --- ÉTAT SÉLECTIONNÉ --- */
+.pawn-card.active .pawn-image-wrapper {
+  transform: scale(1.2) translateY(-10px); /* Grossit et monte */
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4)); /* Ombre plus forte */
+}
+
+/* --- TEXTE SOUS LE PION --- */
+.pawn-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: black;
+  transition: color 0.2s;
+  text-align: center;
+}
+
+/* Le texte change de couleur quand sélectionné */
+.pawn-card.active .pawn-label {
+  color: #ef7d00; /* Orange Sopra */
+  text-shadow: 1px 1px 0 black;
+}

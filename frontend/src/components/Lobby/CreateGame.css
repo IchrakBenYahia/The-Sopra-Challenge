@@ -1,32 +1,41 @@
 /* src/components/CreateGame.css */
 
 .create-container {
-  /* CORRECTION MAJEURE : Force le plein écran */
+  /* MODIFICATION MAJEURE : POSITION FIXED */
+  position: fixed; /* Colle le conteneur à la fenêtre */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  
   background: var(--bg-gradient);
-  width: 100vw;  /* 100% de la largeur de l'écran */
-  height: 100vh; /* 100% de la hauteur de l'écran */
   
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative; /* Pour positionner les décorations de coins */
-  overflow: hidden;   /* Empêche les barres de défilement */
+  
+  overflow: hidden; /* Coupe tout ce qui dépasse */
+  z-index: 1; /* S'assure d'être au-dessus du body */
 }
 
 .main-title {
-  font-size: 4rem; /* Texte très grand pour la TV */
+  /* Taille relative à la largeur (vw) ou hauteur (vh) pour s'adapter */
+  font-size: 4rem; 
   text-transform: uppercase;
-  margin-bottom: 80px; /* Espace sous le titre */
+  
+  /* Marges en % de la hauteur (vh) pour éviter de pousser le contenu hors de l'écran */
+  margin-top: 0;
+  margin-bottom: 8vh; 
+  
   font-weight: 900;
   text-shadow: 
     -3px -3px 0 #000,  
      3px -3px 0 #000,
     -3px  3px 0 #000,
-     3px  3px 0 #000; /* Contour noir épais style cartoon */
+     3px  3px 0 #000;
   z-index: 10;
   text-align: center;
-  margin-top: -50px; /* Remonte un peu le titre pour centrer le reste */
 }
 
 /* Zone centrale contenant le bouton et le sélecteur */
@@ -34,29 +43,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 100px; /* Grand écart entre le bouton et les joueurs */
+  gap: 5vw; /* Écart dynamique en largeur */
   z-index: 10;
   width: 100%;
+  height: fit-content;
 }
 
 /* --- LE BOUTON "CRÉER UNE PARTIE" (Gauche) --- */
 .action-side {
-  /* On s'assure que le bouton est bien visible */
+  display: flex;
+  justify-content: center;
 }
 
 .create-btn {
   background-color: white;
-  color: var(--sopra-violet-dark); /* Violet foncé */
+  color: var(--sopra-violet-dark);
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 2.5rem; /* Gros texte */
-  padding: 30px 60px; /* Bouton large */
+  font-size: 2.5rem;
+  padding: 3vh 3vw; /* Padding dynamique */
   border: none;
   border-radius: 10px;
-  box-shadow: 12px 12px 0px #000; /* Ombre dure noire (Hard shadow) */
+  box-shadow: 12px 12px 0px #000;
   cursor: pointer;
   text-transform: uppercase;
   transition: transform 0.1s, box-shadow 0.1s;
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
 }
 
 .create-btn:hover {
@@ -73,7 +85,7 @@
 .selector-side {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 2vw;
 }
 
 .number-wheel {
@@ -85,31 +97,29 @@
 
 /* Le chiffre sélectionné au milieu */
 .number-selected {
-  background: rgba(255, 255, 255, 0.2); /* Fond légèrement transparent */
-  backdrop-filter: blur(5px);
+  background: white;
   border: 2px solid rgba(255,255,255,0.5);
-  color: black; /* Chiffre en noir */
+  color: black;
   font-size: 4rem;
   font-weight: 900;
-  width: 100px;
-  height: 100px;
+  width: 12vh; /* Carré basé sur la hauteur */
+  height: 12vh;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  margin: 10px 0;
+  margin: 1vh 0;
   z-index: 2;
-  background-color: white; /* Force le fond blanc comme sur la maquette */
 }
 
 /* Les chiffres au-dessus et en-dessous */
 .number-faded {
   font-size: 2.5rem;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.4); /* Noir transparent */
+  color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  height: 50px;
+  height: 6vh; /* Hauteur fixe pour la zone de clic */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,7 +132,7 @@
 }
 
 .label-players {
-  font-size: 3.5rem; /* Texte "JOUEURS" très gros */
+  font-size: 3.5rem;
   font-weight: 900;
   color: black;
   text-transform: uppercase;
@@ -134,34 +144,41 @@
 /* --- DÉCORATIONS D'ANGLE (Triangles noirs) --- */
 .corner-decoration {
   position: absolute;
-  width: 300px;     /* Plus grand pour bien remplir le coin */
-  height: 300px;
+  /* Taille relative pour ne pas manger l'écran sur petit PC */
+  width: 20vw; 
+  height: 20vw;
   background: #1a1a1a;
-  transform: rotate(45deg); /* Rotation pour faire un triangle */
+  transform: rotate(45deg);
   z-index: 1;
 }
 
 .top-left {
-  top: -200px;  /* Position ajustée */
-  left: -200px;
+  top: -12vw;
+  left: -12vw;
   border: 5px solid rgba(255,255,255,0.1);
 }
 
 .bottom-right {
-  bottom: -200px;
-  right: -200px;
-  background: var(--sopra-orange); /* Touche orange en bas à droite */
+  bottom: -12vw;
+  right: -12vw;
+  background: var(--sopra-orange);
   border: 5px solid rgba(0,0,0,0.1);
 }
 
 /* --- RESPONSIVE --- */
+/* Si l'écran est trop étroit (format portrait ou petite fenêtre) */
 @media (max-width: 1000px) {
   .configuration-area {
-    flex-direction: column; /* Empile les éléments sur petits écrans */
-    gap: 50px;
+    flex-direction: column;
+    gap: 5vh;
   }
   
   .main-title {
+    font-size: 2.5rem;
+    margin-bottom: 5vh;
+  }
+  
+  .label-players {
     font-size: 2.5rem;
   }
 }
