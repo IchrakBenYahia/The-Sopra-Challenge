@@ -9,7 +9,7 @@ const setDB = (database) => {
 
 // Route pour récupérer toutes les questions
 router.get('/', (req, res) => {
-  db.query('SELECT * FROM questions', (err, results) => {
+  db.query('SELECT * FROM question', (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
   });
