@@ -6,10 +6,13 @@ import './App.css';
 // Import des composants
 import CreateGame from './components/CreateGame';
 import GameLobby from './components/GameLobby';
+import Plateau from './components/Board/Plateau';
 
 // Placeholder temporaire pour la vue mobile (sera développée plus tard)
 const MobileJoin = () => (
-  <div style={{ padding: 20, textAlign: 'center' }}>Interface Mobile: Rejoindre une partie</div>
+  <div style={{ padding: 20, textAlign: 'center' }}>
+    Interface Mobile : Rejoindre une partie
+  </div>
 );
 
 function App() {
@@ -25,6 +28,9 @@ function App() {
           
           {/* Page Joueur Mobile */}
           <Route path="/join" element={<MobileJoin />} />
+
+          {/* Page Plateau de jeu */}
+          <Route path="/plateau" element={<Plateau />} />
 
           {/* Redirection par défaut */}
           <Route path="*" element={<Navigate to="/" replace />} />
