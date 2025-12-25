@@ -1,5 +1,5 @@
 import React from 'react';
-import './PawnSelection.css';
+import "../../styles/Lobby/PawnSelection.css"; 
 
 // Import des 5 images depuis le dossier assets
 // Assurez-vous qu'elles sont bien dans src/assets/

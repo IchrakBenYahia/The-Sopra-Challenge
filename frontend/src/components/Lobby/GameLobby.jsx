@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { QRCodeCanvas } from 'qrcode.react';
 import { socket } from '../../socket'; // Import de la connexion serveur
-import './GameLobby.css';
+import "../../styles/Lobby/GameLobby.css";
 
 const GameLobby = () => {
   const location = useLocation();

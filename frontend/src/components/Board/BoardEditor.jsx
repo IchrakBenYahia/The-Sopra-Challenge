@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import "./Board.css";
+import "../../styles/Board/Board.css";
 import boardSvg from "../../assets/plateau.svg";
 import { boardCells as initialCells } from "./boardCells";
 

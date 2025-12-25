@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { socket } from '../../socket'; // Assurez-vous d'avoir créé le fichier src/socket.js
-import './CreateGame.css';
+import "../../styles/Lobby/CreateGame.css";
 
 const CreateGame = () => {
   const navigate = useNavigate();

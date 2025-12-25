@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { socket } from '../../socket'; // Import de la connexion serveur
 import PawnSelection from '../PawnSelection'; // Import du composant visuel
-import './MobileJoin.css';
+import "../../styles/Lobby/MobileJoin.css";
 
 const MobileJoin = () => {
   const [searchParams] = useSearchParams();
