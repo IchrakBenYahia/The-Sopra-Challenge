@@ -1,0 +1,184 @@
+/* src/components/CreateGame.css */
+
+.create-container {
+  /* MODIFICATION MAJEURE : POSITION FIXED */
+  position: fixed; /* Colle le conteneur à la fenêtre */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  background: var(--bg-gradient);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  overflow: hidden; /* Coupe tout ce qui dépasse */
+  z-index: 1; /* S'assure d'être au-dessus du body */
+}
+
+.main-title {
+  /* Taille relative à la largeur (vw) ou hauteur (vh) pour s'adapter */
+  font-size: 4rem; 
+  text-transform: uppercase;
+  
+  /* Marges en % de la hauteur (vh) pour éviter de pousser le contenu hors de l'écran */
+  margin-top: 0;
+  margin-bottom: 8vh; 
+  
+  font-weight: 900;
+  text-shadow: 
+    -3px -3px 0 #000,  
+     3px -3px 0 #000,
+    -3px  3px 0 #000,
+     3px  3px 0 #000;
+  z-index: 10;
+  text-align: center;
+}
+
+/* Zone centrale contenant le bouton et le sélecteur */
+.configuration-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw; /* Écart dynamique en largeur */
+  z-index: 10;
+  width: 100%;
+  height: fit-content;
+}
+
+/* --- LE BOUTON "CRÉER UNE PARTIE" (Gauche) --- */
+.action-side {
+  display: flex;
+  justify-content: center;
+}
+
+.create-btn {
+  background-color: white;
+  color: var(--sopra-violet-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  padding: 3vh 3vw; /* Padding dynamique */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 12px 12px 0px #000;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.1s, box-shadow 0.1s;
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
+.create-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 14px 14px 0px #000;
+}
+
+.create-btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+/* --- LE SÉLECTEUR DE JOUEURS (Droite) --- */
+.selector-side {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+
+.number-wheel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Le chiffre sélectionné au milieu */
+.number-selected {
+  background: white;
+  border: 2px solid rgba(255,255,255,0.5);
+  color: black;
+  font-size: 4rem;
+  font-weight: 900;
+  width: 12vh; /* Carré basé sur la hauteur */
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  margin: 1vh 0;
+  z-index: 2;
+}
+
+/* Les chiffres au-dessus et en-dessous */
+.number-faded {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  height: 6vh; /* Hauteur fixe pour la zone de clic */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.number-faded:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.label-players {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: black;
+  text-transform: uppercase;
+  text-shadow: 
+    -1px -1px 0 rgba(255,255,255,0.3),  
+     1px  1px 0 rgba(255,255,255,0.3);
+}
+
+/* --- DÉCORATIONS D'ANGLE (Triangles noirs) --- */
+.corner-decoration {
+  position: absolute;
+  /* Taille relative pour ne pas manger l'écran sur petit PC */
+  width: 20vw; 
+  height: 20vw;
+  background: #1a1a1a;
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.top-left {
+  top: -12vw;
+  left: -12vw;
+  border: 5px solid rgba(255,255,255,0.1);
+}
+
+.bottom-right {
+  bottom: -12vw;
+  right: -12vw;
+  background: var(--sopra-orange);
+  border: 5px solid rgba(0,0,0,0.1);
+}
+
+/* --- RESPONSIVE --- */
+/* Si l'écran est trop étroit (format portrait ou petite fenêtre) */
+@media (max-width: 1000px) {
+  .configuration-area {
+    flex-direction: column;
+    gap: 5vh;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+    margin-bottom: 5vh;
+  }
+  
+  .label-players {
+    font-size: 2.5rem;
+  }
+}

@@ -1,0 +1,201 @@
+/* src/components/GameLobby.css */
+
+.lobby-container {
+  /* GARANTIE "FIXE" : On force le conteneur à occuper l'écran sans bouger */
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  background: var(--bg-gradient);
+  overflow: hidden; /* Coupe impérativement tout ce qui dépasse */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lobby-header h1 {
+  font-size: 3rem; /* Adaptez si besoin (ex: 4vh) */
+  text-transform: uppercase;
+  /* Marges en % de la hauteur pour s'adapter aux petits écrans */
+  margin-top: 0;
+  margin-bottom: 3vh; 
+  
+  text-shadow: 
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000;
+  z-index: 10;
+}
+
+.lobby-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3vh 3vw; /* Padding dynamique */
+  
+  /* DIMENSIONS CONTRAINTES */
+  width: 90%;
+  max-width: 1600px;
+  /* Hauteur max pour ne jamais dépasser l'écran */
+  max-height: 85vh; 
+  
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 10;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* Si le contenu intérieur est trop grand, on gère l'intérieur sans toucher à la page */
+  overflow: hidden; 
+}
+
+.room-title {
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 4vh; /* Marge dynamique */
+  text-shadow: 2px 2px 0 #000;
+  font-weight: 900;
+}
+
+.lobby-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch; /* Important pour aligner les hauteurs */
+  width: 100%;
+  gap: 4vw;
+  flex: 1; /* Prend tout l'espace restant dans la carte */
+  min-height: 0; /* Astuce Flexbox pour permettre le scroll interne si besoin */
+}
+
+/* --- COLONNE GAUCHE (QR + CODE) --- */
+.info-column {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+  padding: 2vh 2vw;
+  border-radius: 15px;
+  height: fit-content;
+  align-self: center; /* Centre verticalement dans la grille */
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-label {
+  font-weight: 900;
+  margin-bottom: 1vh;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 0 #000;
+  text-transform: uppercase;
+}
+
+.code-box {
+  background: white;
+  color: black;
+  font-size: 3.5rem;
+  font-weight: 900;
+  padding: 1.5vh 2vw;
+  border-radius: 10px;
+  box-shadow: 8px 8px 0px #000;
+  letter-spacing: 2px;
+}
+
+.qr-wrapper {
+  background: white;
+  padding: 1vh;
+  border-radius: 10px;
+  box-shadow: 8px 8px 0px #000;
+  display: flex;
+}
+
+/* --- COLONNE DROITE (JOUEURS) --- */
+.players-column {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.players-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid rgba(255,255,255,0.3);
+  padding-bottom: 1vh;
+  margin-bottom: 2vh;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.counter {
+  font-size: 2rem;
+  color: var(--sopra-orange);
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* Conteneur de la liste qui gère son propre défilement si trop de joueurs */
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  overflow-y: auto; /* Scroll UNIQUEMENT ici si nécessaire */
+  padding-right: 10px; /* Espace pour la barre de scroll éventuelle */
+}
+
+/* Masquer la barre de scroll pour chrome/safari/opera pour faire propre */
+.players-list::-webkit-scrollbar {
+  display: none;
+}
+.players-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.player-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5vh 1.5vw;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  flex-shrink: 0; /* Empêche les lignes de s'écraser */
+}
+
+.player-name {
+  color: var(--sopra-orange);
+  font-weight: 900;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+.player-row.empty {
+  background: transparent;
+  border: 3px dashed rgba(255,255,255,0.2);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1000px) {
+  .lobby-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info-column {
+    flex-direction: column;
+    width: 100%;
+  }
+}
