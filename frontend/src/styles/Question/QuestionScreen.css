@@ -130,7 +130,7 @@ body, html {
   gap: 22px;
 }
 
-/* V/F : 2 boutons */
+/* VF : 2 boutons */
 .qs-answers--tf {
   grid-template-columns: 1fr 1fr;
 }

@@ -1,9 +1,8 @@
-// frontend/src/socket.js
-import { io } from 'socket.io-client';
+import { io } from "socket.io-client"; // <-- IMPORTANT
+import { API_URL } from './config';
 
-// REMPLACEZ '192.168.1.25' PAR VOTRE VRAIE ADRESSE IP TROUVÉE À L'ÉTAPE 2
-const URL = "http://localhost:3001"; 
-
-export const socket = io(URL, {
-  autoConnect: true
+export const socket = io(API_URL, {
+  autoConnect: true,
+  transports: ["websocket", "polling"], // <-- ajoute polling comme fallback
+  upgrade: true
 });

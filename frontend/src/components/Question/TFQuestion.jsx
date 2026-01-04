@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/Question/QuestionScreen.css";
 
-export default function TFQuestion({ level, onBack, onTimeUp }) {
+export default function TFQuestion({ question, onBack, onTimeUp }) {
   const [timeLeft, setTimeLeft] = useState(30);
   const [selected, setSelected] = useState(null); // true/false
   const intervalRef = useRef(null);
@@ -32,8 +32,8 @@ export default function TFQuestion({ level, onBack, onTimeUp }) {
 
       <div className="qs-content">
         <div className="qs-toprow">
-          <div className="qs-level">{level}</div>
-          <div className="qs-question">{/* Question vide */}</div>
+          <div className="qs-level">{question.niveau}</div>
+          <div className="qs-question">{question.texte}</div>
         </div>
 
         <div className="qs-answers qs-answers--tf">

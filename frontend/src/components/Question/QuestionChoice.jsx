@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Question/QuestionChoice.css";
 
-export default function QuestionChoice({ theme, selectedLevel, onSelectLevel }) {
+export default function QuestionChoice({ theme, onSelectLevel }) {
   const levels = [1, 2, 3, 4, 5];
 
   return (
@@ -9,16 +9,19 @@ export default function QuestionChoice({ theme, selectedLevel, onSelectLevel }) 
       <div className="bg-shapes" />
 
       <div className="choice-container">
-        <h2 className="theme-title">{theme.name}</h2>
-        <h3 className="theme-subtitle">{theme.subtitle}</h3>
+        <h2 className="theme-title">
+          {theme?.name || "Choisis un niveau"}
+        </h2>
+
+        <h3 className="theme-subtitle">
+          {theme?.subtitle || ""}
+        </h3>
 
         <div className="levels-grid">
           {levels.map((level) => (
             <button
               key={level}
-              className={`level-card ${
-                selectedLevel === level ? "level-card--selected" : ""
-              }`}
+              className="level-card"
               onClick={() => onSelectLevel(level)}
             >
               {level}

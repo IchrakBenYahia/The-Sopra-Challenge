@@ -3,11 +3,11 @@ import "../../styles/Lobby/PawnSelection.css";
 
 // Import des 5 images depuis le dossier assets
 // Assurez-vous qu'elles sont bien dans src/assets/
-import joueur1 from '../assets/joueur_1.png';
-import joueur2 from '../assets/joueur_2.png';
-import joueur3 from '../assets/joueur_3.png';
-import joueur4 from '../assets/joueur_4.png';
-import joueur5 from '../assets/joueur_5.png';
+import joueur1 from '../../assets/joueur_1.png';
+import joueur2 from '../../assets/joueur_2.png';
+import joueur3 from '../../assets/joueur_3.png';
+import joueur4 from '../../assets/joueur_4.png';
+import joueur5 from '../../assets/joueur_5.png';
 
 const PawnSelection = ({ onSelect, selectedColor, playerName }) => {
   

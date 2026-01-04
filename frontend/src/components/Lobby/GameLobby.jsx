@@ -1,20 +1,21 @@
 // src/components/GameLobby.jsx
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { QRCodeCanvas } from 'qrcode.react';
 import { socket } from '../../socket'; // Import de la connexion serveur
 import "../../styles/Lobby/GameLobby.css";
 
 const GameLobby = () => {
   const location = useLocation();
-  
+  const navigate = useNavigate(); 
+
   // Récupération des données passées par CreateGame (ou valeurs par défaut)
   const maxPlayers = location.state?.maxPlayers || 4;
   const roomId = location.state?.roomId || "----"; 
 
   // L'URL que les joueurs doivent ouvrir (votre IP locale ou localhost)
   // window.location.origin donne "http://localhost:5173"
-  const joinUrl = `${window.location.origin}/join`; 
+  const joinUrl = `${window.location.protocol}//${window.location.hostname}:5173/join`; 
   const qrValue = `${joinUrl}?code=${roomId}`;
 
   const [players, setPlayers] = useState([]);
@@ -34,6 +35,22 @@ const GameLobby = () => {
       socket.off('update_player_list');
     };
   }, []);
+
+  useEffect(() => {
+  socket.on('update_player_list', (updatedPlayers) => {
+    setPlayers(updatedPlayers);
+  });
+
+  socket.on('start_game', () => {
+    alert("Tous les joueurs sont présents ! Début du jeu.");
+    navigate('/plateau');
+  });
+
+  return () => {
+    socket.off('update_player_list');
+    socket.off('start_game');
+  };
+}, [navigate]);
 
   // --- LOGIQUE D'AFFICHAGE (PAGINATION) ---
   const currentPlayers = players.slice(
@@ -92,16 +109,16 @@ const GameLobby = () => {
             
             <div className="players-list">
               {/* Joueurs réels */}
-              {currentPlayers.map((player, index) => (
-                <div key={player.id} className="player-row">
-                  <span className="player-number">
-                    Joueur {currentPage * PLAYERS_PER_PAGE + index + 1}
-                  </span>
-                  <strong className="player-name" style={{ color: player.color }}>
-                    {player.name}
-                  </strong>
-                </div>
-              ))}
+                {currentPlayers.map((player, index) => (
+                  <div key={`${player.id}-${index}`} className="player-row">
+                    <span className="player-number">
+                      Joueur {currentPage * PLAYERS_PER_PAGE + index + 1}
+                    </span>
+                    <strong className="player-name" style={{ color: player.color }}>
+                      {player.name}
+                    </strong>
+                  </div>
+                ))}
 
               {/* Places vides (En attente...) */}
               {[...Array(emptySlotsCount)].map((_, i) => (

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { socket } from '../../socket'; // Import de la connexion serveur
-import PawnSelection from '../PawnSelection'; // Import du composant visuel
+import PawnSelection from './PawnSelection'; // Import du composant visuel
 import "../../styles/Lobby/MobileJoin.css";
 
 const MobileJoin = () => {
@@ -36,11 +36,17 @@ const MobileJoin = () => {
         alert("Erreur : " + msg);
     });
 
-    return () => {
-        socket.off('join_success');
-        socket.off('error_message');
-    };
-  }, [searchParams]);
+  socket.on('start_game', () => {
+    alert("La partie commence !"); // facultatif, peut enlever plus tard
+    navigate('/plateau'); // redirection vers le plateau
+  });
+
+  return () => {
+    socket.off('join_success');
+    socket.off('error_message');
+    socket.off('start_game'); // nettoyage
+  };
+}, [searchParams, navigate]);
 
   const handleEnterCode = () => {
     if (formData.gameCode.length >= 4) {
@@ -60,6 +66,7 @@ const MobileJoin = () => {
       });
     }
   };
+
 
   return (
     <div className="mobile-container">

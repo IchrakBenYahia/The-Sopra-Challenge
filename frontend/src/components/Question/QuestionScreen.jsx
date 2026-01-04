@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/Question/QuestionScreen.css";
 
-export default function QuestionScreen({ level, onBack, onTimeUp }) {
+export default function QuestionScreen({ question, onBack, onTimeUp }) {
   const [timeLeft, setTimeLeft] = useState(30);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
@@ -54,8 +54,8 @@ export default function QuestionScreen({ level, onBack, onTimeUp }) {
       <div className="qs-content">
         {/* Ligne: Niveau + Question */}
         <div className="qs-toprow">
-          <div className="qs-level">{level}</div>
-          <div className="qs-question">{/* vide */}</div>
+          <div className="qs-level">{question.niveau}</div>
+          <div className="qs-question">{question.texte}</div>
         </div>
 
         {/* Réponses */}

@@ -8,13 +8,7 @@ import CreateGame from './components/Lobby/CreateGame';
 import GameLobby from './components/Lobby/GameLobby';
 import Plateau from './components/Board/Plateau';
 import GameFlow from "./components/Question/GameFlow";
-
-// Placeholder temporaire pour la vue mobile (sera développée plus tard)
-const MobileJoin = () => (
-  <div style={{ padding: 20, textAlign: 'center' }}>
-    Interface Mobile : Rejoindre une partie
-  </div>
-);
+import MobileJoin from './components/Lobby/MobileJoin'; 
 
 function App() {
   return (

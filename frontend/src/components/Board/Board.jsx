@@ -58,6 +58,8 @@ export default function Board({ teams, onCellClick, showDebug = false }) {
           if (!cellPos) return null;
 
           const offset = getPositionOffset(player.id, player.currentCell);
+console.log(teams);
+teams.forEach(t => console.log(t.name, t.color_type, PLAYER_ASSETS[t.color_type]));
 
           return (
             <div
@@ -66,15 +68,10 @@ export default function Board({ teams, onCellClick, showDebug = false }) {
               style={{
                 left: `${cellPos.x}%`,
                 top: `${cellPos.y}%`,
-                // Ajustement : dy - 25px pour que le pied du pion soit sur la case
                 transform: `translate(${offset.x}px, ${offset.y - 25}px)`,
               }}
             >
-              <img 
-                src={PLAYER_ASSETS[player.color_type]} 
-                className="pawn-img" 
-                alt={player.name} 
-              />
+              <img src={PLAYER_ASSETS[player.color_type]} className="pawn-img" alt={player.name} />
               <span className="pawn-label">{player.name}</span>
             </div>
           );
