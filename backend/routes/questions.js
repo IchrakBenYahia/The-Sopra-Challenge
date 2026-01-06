@@ -14,7 +14,7 @@ router.get('/cartes/:id', (req, res) => {
       c.titre AS carte_titre,
       t.nom AS theme_nom,
       t.couleur AS theme_couleur
-    FROM Cartes c
+    FROM Cartes c 
     JOIN Theme t ON c.id_theme = t.id
     WHERE c.id = ?
   `;
